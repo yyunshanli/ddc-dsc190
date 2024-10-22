@@ -3,8 +3,8 @@ import logging as smlog
 import os
 import traceback
 
-from .smdataset.abstime import calc_note_beats_and_abs_times
-from .smdataset.parse import parse_sm_txt
+from smdataset.abstime import calc_note_beats_and_abs_times
+from smdataset.parse import parse_sm_txt
 
 _ATTR_REQUIRED = ['offset', 'bpms', 'notes']
 
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     from collections import OrderedDict
     import json
     json.encoder.FLOAT_REPR = lambda f: ('%.6f' % f)
-    from .util import ez_name, get_subdirs
+    from util import ez_name, get_subdirs
 
     parser = argparse.ArgumentParser()
     parser.add_argument('packs_dir', type=str, help='Directory of packs (organized like Stepmania songs folder)')
@@ -143,4 +143,4 @@ if __name__ == '__main__':
                     smlog.error('Unicode error in {}'.format(sm_fp))
                     continue
 
-            print('Parsed {} - {}: {} charts'.format(pack_name, sm_name, len(out_json['charts'])))
+            print 'Parsed {} - {}: {} charts'.format(pack_name, sm_name, len(out_json['charts']))

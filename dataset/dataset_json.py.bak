@@ -2,7 +2,7 @@ if __name__ == '__main__':
     import argparse
     import os
     import random
-    from .util import get_subdirs
+    from util import get_subdirs
 
     parser = argparse.ArgumentParser()
     parser.add_argument('json_dir', type=str, help='Input JSON dir')

@@ -1,5 +1,5 @@
 from collections import defaultdict
-import pickle as pickle
+import cPickle as pickle
 import os
 import time
 
@@ -10,85 +10,85 @@ from sym_net import SymNet
 from util import *
 
 # Data
-tf.compat.v1.app.flags.DEFINE_string('train_txt_fp', '', 'Training dataset txt file with a list of pickled song files')
-tf.compat.v1.app.flags.DEFINE_string('valid_txt_fp', '', 'Eval dataset txt file with a list of pickled song files')
-tf.compat.v1.app.flags.DEFINE_string('test_txt_fp', '', 'Test dataset txt file with a list of pickled song files')
-tf.compat.v1.app.flags.DEFINE_string('sym_rnn_pretrain_model_ckpt_fp', '', 'File path to model checkpoint with only sym weights')
-tf.compat.v1.app.flags.DEFINE_string('model_ckpt_fp', '', 'File path to model checkpoint if resuming or eval')
+tf.app.flags.DEFINE_string('train_txt_fp', '', 'Training dataset txt file with a list of pickled song files')
+tf.app.flags.DEFINE_string('valid_txt_fp', '', 'Eval dataset txt file with a list of pickled song files')
+tf.app.flags.DEFINE_string('test_txt_fp', '', 'Test dataset txt file with a list of pickled song files')
+tf.app.flags.DEFINE_string('sym_rnn_pretrain_model_ckpt_fp', '', 'File path to model checkpoint with only sym weights')
+tf.app.flags.DEFINE_string('model_ckpt_fp', '', 'File path to model checkpoint if resuming or eval')
 
 # Features
-tf.compat.v1.app.flags.DEFINE_string('sym_in_type', 'onehot', 'Either \'onehot\' or \'bagofarrows\'')
-tf.compat.v1.app.flags.DEFINE_string('sym_out_type', 'onehot', 'Either \'onehot\' or \'bagofarrows\'')
-tf.compat.v1.app.flags.DEFINE_integer('sym_narrows', 4, 'Number or arrows in data')
-tf.compat.v1.app.flags.DEFINE_integer('sym_narrowclasses', 4, 'Number or arrow classes in data')
-tf.compat.v1.app.flags.DEFINE_integer('sym_embedding_size', 32, '')
-tf.compat.v1.app.flags.DEFINE_bool('audio_z_score', False, 'If true, train and test on z-score of validation data')
-tf.compat.v1.app.flags.DEFINE_integer('audio_deviation_max', 0, '')
-tf.compat.v1.app.flags.DEFINE_integer('audio_context_radius', -1, 'Past and future context per training example')
-tf.compat.v1.app.flags.DEFINE_integer('audio_nbands', 0, 'Number of bands per frame')
-tf.compat.v1.app.flags.DEFINE_integer('audio_nchannels', 0, 'Number of channels per frame')
-tf.compat.v1.app.flags.DEFINE_bool('feat_meas_phase', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_meas_phase_cos', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_meas_phase_sin', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_beat_phase', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_beat_phase_cos', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_beat_phase_sin', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_beat_diff', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_beat_diff_next', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_beat_abs', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_time_diff', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_time_diff_next', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_time_abs', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_prog_diff', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_prog_abs', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_diff_feet', False, '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_diff_aps', False, '')
-tf.compat.v1.app.flags.DEFINE_integer('feat_beat_phase_nquant', 0, '')
-tf.compat.v1.app.flags.DEFINE_integer('feat_beat_phase_max_nwraps', 0, '')
-tf.compat.v1.app.flags.DEFINE_integer('feat_meas_phase_nquant', 0, '')
-tf.compat.v1.app.flags.DEFINE_integer('feat_meas_phase_max_nwraps', 0, '')
-tf.compat.v1.app.flags.DEFINE_string('feat_diff_feet_to_id_fp', '', '')
-tf.compat.v1.app.flags.DEFINE_string('feat_diff_coarse_to_id_fp', '', '')
-tf.compat.v1.app.flags.DEFINE_bool('feat_diff_dipstick', False, '')
-tf.compat.v1.app.flags.DEFINE_string('feat_freetext_to_id_fp', '', '')
-tf.compat.v1.app.flags.DEFINE_integer('feat_bucket_beat_diff_n', None, '')
-tf.compat.v1.app.flags.DEFINE_float('feat_bucket_beat_diff_max', None, '')
-tf.compat.v1.app.flags.DEFINE_integer('feat_bucket_time_diff_n', None, '')
-tf.compat.v1.app.flags.DEFINE_float('feat_bucket_time_diff_max', None, '')
+tf.app.flags.DEFINE_string('sym_in_type', 'onehot', 'Either \'onehot\' or \'bagofarrows\'')
+tf.app.flags.DEFINE_string('sym_out_type', 'onehot', 'Either \'onehot\' or \'bagofarrows\'')
+tf.app.flags.DEFINE_integer('sym_narrows', 4, 'Number or arrows in data')
+tf.app.flags.DEFINE_integer('sym_narrowclasses', 4, 'Number or arrow classes in data')
+tf.app.flags.DEFINE_integer('sym_embedding_size', 32, '')
+tf.app.flags.DEFINE_bool('audio_z_score', False, 'If true, train and test on z-score of validation data')
+tf.app.flags.DEFINE_integer('audio_deviation_max', 0, '')
+tf.app.flags.DEFINE_integer('audio_context_radius', -1, 'Past and future context per training example')
+tf.app.flags.DEFINE_integer('audio_nbands', 0, 'Number of bands per frame')
+tf.app.flags.DEFINE_integer('audio_nchannels', 0, 'Number of channels per frame')
+tf.app.flags.DEFINE_bool('feat_meas_phase', False, '')
+tf.app.flags.DEFINE_bool('feat_meas_phase_cos', False, '')
+tf.app.flags.DEFINE_bool('feat_meas_phase_sin', False, '')
+tf.app.flags.DEFINE_bool('feat_beat_phase', False, '')
+tf.app.flags.DEFINE_bool('feat_beat_phase_cos', False, '')
+tf.app.flags.DEFINE_bool('feat_beat_phase_sin', False, '')
+tf.app.flags.DEFINE_bool('feat_beat_diff', False, '')
+tf.app.flags.DEFINE_bool('feat_beat_diff_next', False, '')
+tf.app.flags.DEFINE_bool('feat_beat_abs', False, '')
+tf.app.flags.DEFINE_bool('feat_time_diff', False, '')
+tf.app.flags.DEFINE_bool('feat_time_diff_next', False, '')
+tf.app.flags.DEFINE_bool('feat_time_abs', False, '')
+tf.app.flags.DEFINE_bool('feat_prog_diff', False, '')
+tf.app.flags.DEFINE_bool('feat_prog_abs', False, '')
+tf.app.flags.DEFINE_bool('feat_diff_feet', False, '')
+tf.app.flags.DEFINE_bool('feat_diff_aps', False, '')
+tf.app.flags.DEFINE_integer('feat_beat_phase_nquant', 0, '')
+tf.app.flags.DEFINE_integer('feat_beat_phase_max_nwraps', 0, '')
+tf.app.flags.DEFINE_integer('feat_meas_phase_nquant', 0, '')
+tf.app.flags.DEFINE_integer('feat_meas_phase_max_nwraps', 0, '')
+tf.app.flags.DEFINE_string('feat_diff_feet_to_id_fp', '', '')
+tf.app.flags.DEFINE_string('feat_diff_coarse_to_id_fp', '', '')
+tf.app.flags.DEFINE_bool('feat_diff_dipstick', False, '')
+tf.app.flags.DEFINE_string('feat_freetext_to_id_fp', '', '')
+tf.app.flags.DEFINE_integer('feat_bucket_beat_diff_n', None, '')
+tf.app.flags.DEFINE_float('feat_bucket_beat_diff_max', None, '')
+tf.app.flags.DEFINE_integer('feat_bucket_time_diff_n', None, '')
+tf.app.flags.DEFINE_float('feat_bucket_time_diff_max', None, '')
 
 # Network params
-tf.compat.v1.app.flags.DEFINE_integer('batch_size', 128, 'Batch size for training')
-tf.compat.v1.app.flags.DEFINE_integer('nunroll', 1, '')
-tf.compat.v1.app.flags.DEFINE_string('cnn_filter_shapes', '', 'CSV 3-tuples of filter shapes (time, freq, n)')
-tf.compat.v1.app.flags.DEFINE_string('cnn_pool', '', 'CSV 2-tuples of pool amounts (time, freq)')
-tf.compat.v1.app.flags.DEFINE_integer('cnn_dim_reduction_size', -1, '')
-tf.compat.v1.app.flags.DEFINE_float('cnn_dim_reduction_keep_prob', 1.0, '')
-tf.compat.v1.app.flags.DEFINE_string('cnn_dim_reduction_nonlin', '', '')
-tf.compat.v1.app.flags.DEFINE_string('rnn_cell_type', 'lstm', '')
-tf.compat.v1.app.flags.DEFINE_integer('rnn_size', 0, '')
-tf.compat.v1.app.flags.DEFINE_integer('rnn_nlayers', 0, '')
-tf.compat.v1.app.flags.DEFINE_float('rnn_keep_prob', 1.0, '')
-tf.compat.v1.app.flags.DEFINE_string('dnn_sizes', '', 'CSV sizes for dense layers')
-tf.compat.v1.app.flags.DEFINE_float('dnn_keep_prob', 1.0, '')
+tf.app.flags.DEFINE_integer('batch_size', 128, 'Batch size for training')
+tf.app.flags.DEFINE_integer('nunroll', 1, '')
+tf.app.flags.DEFINE_string('cnn_filter_shapes', '', 'CSV 3-tuples of filter shapes (time, freq, n)')
+tf.app.flags.DEFINE_string('cnn_pool', '', 'CSV 2-tuples of pool amounts (time, freq)')
+tf.app.flags.DEFINE_integer('cnn_dim_reduction_size', -1, '')
+tf.app.flags.DEFINE_float('cnn_dim_reduction_keep_prob', 1.0, '')
+tf.app.flags.DEFINE_string('cnn_dim_reduction_nonlin', '', '')
+tf.app.flags.DEFINE_string('rnn_cell_type', 'lstm', '')
+tf.app.flags.DEFINE_integer('rnn_size', 0, '')
+tf.app.flags.DEFINE_integer('rnn_nlayers', 0, '')
+tf.app.flags.DEFINE_float('rnn_keep_prob', 1.0, '')
+tf.app.flags.DEFINE_string('dnn_sizes', '', 'CSV sizes for dense layers')
+tf.app.flags.DEFINE_float('dnn_keep_prob', 1.0, '')
 
 # Training params
-tf.compat.v1.app.flags.DEFINE_float('grad_clip', 0.0, 'Clip gradients to this value if greater than 0')
-tf.compat.v1.app.flags.DEFINE_string('opt', 'sgd', 'One of \'sgd\'')
-tf.compat.v1.app.flags.DEFINE_float('lr', 1.0, 'Learning rate')
-tf.compat.v1.app.flags.DEFINE_float('lr_decay_rate', 1.0, 'Multiply learning rate by this value every epoch')
-tf.compat.v1.app.flags.DEFINE_integer('lr_decay_delay', 0, '')
-tf.compat.v1.app.flags.DEFINE_integer('nbatches_per_ckpt', 100, 'Save model weights every N batches')
-tf.compat.v1.app.flags.DEFINE_integer('nbatches_per_eval', 10000, 'Evaluate model every N batches')
-tf.compat.v1.app.flags.DEFINE_integer('nepochs', 0, 'Number of training epochs, negative means train continuously')
-tf.compat.v1.app.flags.DEFINE_string('experiment_dir', '', 'Directory for temporary training files and model weights')
+tf.app.flags.DEFINE_float('grad_clip', 0.0, 'Clip gradients to this value if greater than 0')
+tf.app.flags.DEFINE_string('opt', 'sgd', 'One of \'sgd\'')
+tf.app.flags.DEFINE_float('lr', 1.0, 'Learning rate')
+tf.app.flags.DEFINE_float('lr_decay_rate', 1.0, 'Multiply learning rate by this value every epoch')
+tf.app.flags.DEFINE_integer('lr_decay_delay', 0, '')
+tf.app.flags.DEFINE_integer('nbatches_per_ckpt', 100, 'Save model weights every N batches')
+tf.app.flags.DEFINE_integer('nbatches_per_eval', 10000, 'Evaluate model every N batches')
+tf.app.flags.DEFINE_integer('nepochs', 0, 'Number of training epochs, negative means train continuously')
+tf.app.flags.DEFINE_string('experiment_dir', '', 'Directory for temporary training files and model weights')
 
 # Eval params
 
 # Generate params
-tf.compat.v1.app.flags.DEFINE_string('generate_fp', '', '')
-tf.compat.v1.app.flags.DEFINE_string('generate_vocab_fp', '', '')
+tf.app.flags.DEFINE_string('generate_fp', '', '')
+tf.app.flags.DEFINE_string('generate_vocab_fp', '', '')
 
-FLAGS = tf.compat.v1.app.flags.FLAGS
+FLAGS = tf.app.flags.FLAGS
 dtype = tf.float32
 
 def main(_):
@@ -100,19 +100,19 @@ def main(_):
     do_generate = bool(FLAGS.generate_fp)
 
     # Load data
-    print('Loading data')
+    print 'Loading data'
     train_data, valid_data, test_data = open_dataset_fps(FLAGS.train_txt_fp, FLAGS.valid_txt_fp, FLAGS.test_txt_fp)
 
     # Calculate validation metrics
     if FLAGS.audio_z_score:
         z_score_fp = os.path.join(FLAGS.experiment_dir, 'valid_mean_std.pkl')
         if do_valid and not os.path.exists(z_score_fp):
-            print('Calculating validation metrics')
+            print 'Calculating validation metrics'
             mean_per_band, std_per_band = calc_mean_std_per_band(valid_data)
             with open(z_score_fp, 'wb') as f:
                 pickle.dump((mean_per_band, std_per_band), f)
         else:
-            print('Loading validation metrics')
+            print 'Loading validation metrics'
             with open(z_score_fp, 'rb') as f:
                 mean_per_band, std_per_band = pickle.load(f)
 
@@ -121,17 +121,17 @@ def main(_):
             apply_z_norm(data, mean_per_band, std_per_band)
 
     # Flatten the data into chart references for easier iteration
-    print('Flattening datasets into charts')
+    print 'Flattening datasets into charts'
     charts_train = flatten_dataset_to_charts(train_data)
     charts_valid = flatten_dataset_to_charts(valid_data)
     charts_test = flatten_dataset_to_charts(test_data)
 
     # Filter charts that are too short
     charts_train_len = len(charts_train)
-    charts_train = [x for x in charts_train if x.get_nannotations() >= FLAGS.nunroll]
+    charts_train = filter(lambda x: x.get_nannotations() >= FLAGS.nunroll, charts_train)
     if len(charts_train) != charts_train_len:
-        print('{} charts too small for training'.format(charts_train_len - len(charts_train)))
-    print('Train set: {} charts, valid set: {} charts, test set: {} charts'.format(len(charts_train), len(charts_valid), len(charts_test)))
+        print '{} charts too small for training'.format(charts_train_len - len(charts_train))
+    print 'Train set: {} charts, valid set: {} charts, test set: {} charts'.format(len(charts_train), len(charts_valid), len(charts_test))
 
     # Load ID maps
     diff_feet_to_id = None
@@ -173,7 +173,7 @@ def main(_):
         'bucket_time_diff_n': FLAGS.feat_bucket_time_diff_n
     }
     nfeats = 0
-    for feat in list(feats_config.values()):
+    for feat in feats_config.values():
         if feat is None:
             continue
         if isinstance(feat, dict):
@@ -191,10 +191,10 @@ def main(_):
     feats_config['bucket_time_diff_max'] = FLAGS.feat_bucket_time_diff_max
     feats_config_eval = dict(feats_config)
     feats_config_eval['audio_deviation_max'] = 0
-    print('Feature configuration (nfeats={}): {}'.format(nfeats, feats_config))
+    print 'Feature configuration (nfeats={}): {}'.format(nfeats, feats_config)
 
     # Create model config
-    rnn_proj_init = tf.compat.v1.constant_initializer(0.0, dtype=dtype) if FLAGS.sym_rnn_pretrain_model_ckpt_fp else tf.compat.v1.keras.initializers.VarianceScaling(scale=1.0, dtype=dtype, distribution="uniform")
+    rnn_proj_init = tf.constant_initializer(0.0, dtype=dtype) if FLAGS.sym_rnn_pretrain_model_ckpt_fp else tf.uniform_unit_scaling_initializer(factor=1.0, dtype=dtype)
     model_config = {
         'nunroll': FLAGS.nunroll,
         'sym_in_type': FLAGS.sym_in_type,
@@ -207,75 +207,75 @@ def main(_):
         'audio_nbands': FLAGS.audio_nbands,
         'audio_nchannels': FLAGS.audio_nchannels,
         'cnn_filter_shapes': stride_csv_arg_list(FLAGS.cnn_filter_shapes, 3, int),
-        'cnn_init': tf.compat.v1.keras.initializers.VarianceScaling(scale=1.43, dtype=dtype, distribution="uniform"),
+        'cnn_init': tf.uniform_unit_scaling_initializer(factor=1.43, dtype=dtype),
         'cnn_pool': stride_csv_arg_list(FLAGS.cnn_pool, 2, int),
         'cnn_dim_reduction_size': FLAGS.cnn_dim_reduction_size,
-        'cnn_dim_reduction_init': tf.compat.v1.keras.initializers.VarianceScaling(scale=1.0, dtype=dtype, distribution="uniform"),
+        'cnn_dim_reduction_init': tf.uniform_unit_scaling_initializer(factor=1.0, dtype=dtype),
         'cnn_dim_reduction_nonlin': FLAGS.cnn_dim_reduction_nonlin,
         'cnn_dim_reduction_keep_prob': FLAGS.cnn_dim_reduction_keep_prob,
         'rnn_proj_init': rnn_proj_init,
         'rnn_cell_type': FLAGS.rnn_cell_type,
         'rnn_size': FLAGS.rnn_size,
         'rnn_nlayers': FLAGS.rnn_nlayers,
-        'rnn_init': tf.compat.v1.random_uniform_initializer(-5e-2, 5e-2, dtype=dtype),
+        'rnn_init': tf.random_uniform_initializer(-5e-2, 5e-2, dtype=dtype),
         'nunroll': FLAGS.nunroll,
         'rnn_keep_prob': FLAGS.rnn_keep_prob,
         'dnn_sizes': stride_csv_arg_list(FLAGS.dnn_sizes, 1, int),
-        'dnn_init': tf.compat.v1.keras.initializers.VarianceScaling(scale=1.15, dtype=dtype, distribution="uniform"),
+        'dnn_init': tf.uniform_unit_scaling_initializer(factor=1.15, dtype=dtype),
         'dnn_keep_prob': FLAGS.dnn_keep_prob,
         'grad_clip': FLAGS.grad_clip,
         'opt': FLAGS.opt,
     }
-    print('Model configuration: {}'.format(model_config))
+    print 'Model configuration: {}'.format(model_config)
 
-    with tf.Graph().as_default(), tf.compat.v1.Session() as sess:
+    with tf.Graph().as_default(), tf.Session() as sess:
         if do_train:
-            print('Creating train model')
-            with tf.compat.v1.variable_scope('model_ss', reuse=None):
+            print 'Creating train model'
+            with tf.variable_scope('model_ss', reuse=None):
                 model_train = SymNet(mode='train', batch_size=FLAGS.batch_size, **model_config)
 
         if do_train_eval or do_eval:
-            print('Creating eval model')
-            with tf.compat.v1.variable_scope('model_ss', reuse=do_train):
+            print 'Creating eval model'
+            with tf.variable_scope('model_ss', reuse=do_train):
                 eval_batch_size = FLAGS.batch_size
                 if FLAGS.rnn_size > 0 and FLAGS.rnn_nlayers > 0:
                     eval_batch_size = 1
                 model_eval = SymNet(mode='eval', batch_size=eval_batch_size, **model_config)
-                model_early_stop_xentropy_avg = tf.compat.v1.train.Saver(tf.compat.v1.global_variables(), max_to_keep=None)
-                model_early_stop_accuracy = tf.compat.v1.train.Saver(tf.compat.v1.global_variables(), max_to_keep=None)
+                model_early_stop_xentropy_avg = tf.train.Saver(tf.global_variables(), max_to_keep=None)
+                model_early_stop_accuracy = tf.train.Saver(tf.global_variables(), max_to_keep=None)
 
         if do_generate:
-            print('Creating generation model')
-            with tf.compat.v1.variable_scope('model_ss', reuse=do_train):
+            print 'Creating generation model'
+            with tf.variable_scope('model_ss', reuse=do_train):
                 eval_batch_size = FLAGS.batch_size
                 model_gen = SymNet(mode='gen', batch_size=1, **model_config)
 
         # Restore or init model
-        model_saver = tf.compat.v1.train.Saver(tf.compat.v1.global_variables())
+        model_saver = tf.train.Saver(tf.global_variables())
         if FLAGS.model_ckpt_fp:
-            print('Restoring model weights from {}'.format(FLAGS.model_ckpt_fp))
+            print 'Restoring model weights from {}'.format(FLAGS.model_ckpt_fp)
             model_saver.restore(sess, FLAGS.model_ckpt_fp)
         else:
-            print('Initializing model weights from scratch')
-            sess.run(tf.compat.v1.global_variables_initializer())
+            print 'Initializing model weights from scratch'
+            sess.run(tf.global_variables_initializer())
 
             # Restore or init sym weights
             if FLAGS.sym_rnn_pretrain_model_ckpt_fp:
-                print('Restoring pretrained weights from {}'.format(FLAGS.sym_rnn_pretrain_model_ckpt_fp))
-                var_list_old = [x for x in tf.compat.v1.global_variables() if 'nosym' not in x.name and 'cnn' not in x.name]
-                pretrain_saver = tf.compat.v1.train.Saver(var_list_old)
+                print 'Restoring pretrained weights from {}'.format(FLAGS.sym_rnn_pretrain_model_ckpt_fp)
+                var_list_old = filter(lambda x: 'nosym' not in x.name and 'cnn' not in x.name, tf.global_variables())
+                pretrain_saver = tf.train.Saver(var_list_old)
                 pretrain_saver.restore(sess, FLAGS.sym_rnn_pretrain_model_ckpt_fp)
 
         # Create summaries
         if do_train:
-            summary_writer = tf.compat.v1.summary.FileWriter(FLAGS.experiment_dir, sess.graph)
+            summary_writer = tf.summary.FileWriter(FLAGS.experiment_dir, sess.graph)
 
-            epoch_mean_xentropy = tf.compat.v1.placeholder(tf.float32, shape=[], name='epoch_mean_xentropy')
-            epoch_mean_time = tf.compat.v1.placeholder(tf.float32, shape=[], name='epoch_mean_time')
-            epoch_var_xentropy = tf.compat.v1.placeholder(tf.float32, shape=[], name='epoch_var_xentropy')
-            epoch_var_time = tf.compat.v1.placeholder(tf.float32, shape=[], name='epoch_var_time')
-            epoch_time_total = tf.compat.v1.placeholder(tf.float32, shape=[], name='epoch_time_total')
-            epoch_summaries = tf.compat.v1.summary.merge([
+            epoch_mean_xentropy = tf.placeholder(tf.float32, shape=[], name='epoch_mean_xentropy')
+            epoch_mean_time = tf.placeholder(tf.float32, shape=[], name='epoch_mean_time')
+            epoch_var_xentropy = tf.placeholder(tf.float32, shape=[], name='epoch_var_xentropy')
+            epoch_var_time = tf.placeholder(tf.float32, shape=[], name='epoch_var_time')
+            epoch_time_total = tf.placeholder(tf.float32, shape=[], name='epoch_time_total')
+            epoch_summaries = tf.summary.merge([
                 tf.summary.scalar('epoch_mean_xentropy', epoch_mean_xentropy),
                 tf.summary.scalar('epoch_mean_time', epoch_mean_time),
                 tf.summary.scalar('epoch_var_xentropy', epoch_var_xentropy),
@@ -289,15 +289,15 @@ def main(_):
             for eval_metric_name in eval_metric_names:
                 name_mean = 'eval_mean_{}'.format(eval_metric_name)
                 name_var = 'eval_var_{}'.format(eval_metric_name)
-                ph_mean = tf.compat.v1.placeholder(tf.float32, shape=[], name=name_mean)
-                ph_var = tf.compat.v1.placeholder(tf.float32, shape=[], name=name_var)
+                ph_mean = tf.placeholder(tf.float32, shape=[], name=name_mean)
+                ph_var = tf.placeholder(tf.float32, shape=[], name=name_var)
                 summary_mean = tf.summary.scalar(name_mean, ph_mean)
                 summary_var = tf.summary.scalar(name_var, ph_var)
-                eval_summaries.append(tf.compat.v1.summary.merge([summary_mean, summary_var]))
+                eval_summaries.append(tf.summary.merge([summary_mean, summary_var]))
                 eval_metrics[eval_metric_name] = (ph_mean, ph_var)
-            eval_time = tf.compat.v1.placeholder(tf.float32, shape=[], name='eval_time')
+            eval_time = tf.placeholder(tf.float32, shape=[], name='eval_time')
             eval_time_summary = tf.summary.scalar('eval_time', eval_time)
-            eval_summaries = tf.compat.v1.summary.merge([eval_time_summary] + eval_summaries)
+            eval_summaries = tf.summary.merge([eval_time_summary] + eval_summaries)
 
             # Calculate epoch stuff
             train_nexamples = sum([chart.get_nannotations() for chart in charts_train])
@@ -305,7 +305,7 @@ def main(_):
             examples_per_batch *= model_train.out_nunroll
             batches_per_epoch = train_nexamples // examples_per_batch
             nbatches = FLAGS.nepochs * batches_per_epoch
-            print('{} frames in data, {} batches per epoch, {} batches total'.format(train_nexamples, batches_per_epoch, nbatches))
+            print '{} frames in data, {} batches per epoch, {} batches total'.format(train_nexamples, batches_per_epoch, nbatches)
 
             # Init epoch
             lr_summary = model_train.assign_lr(sess, FLAGS.lr)
@@ -335,14 +335,14 @@ def main(_):
 
                 if batch_num % batches_per_epoch == 0:
                     epoch_num = batch_num // batches_per_epoch
-                    print('Completed epoch {}'.format(epoch_num))
+                    print 'Completed epoch {}'.format(epoch_num)
 
                     lr_decay = FLAGS.lr_decay_rate ** max(epoch_num - FLAGS.lr_decay_delay, 0)
                     lr_summary = model_train.assign_lr(sess, FLAGS.lr * lr_decay)
                     summary_writer.add_summary(lr_summary, batch_num)
 
                     epoch_xentropy = np.mean(epoch_xentropies)
-                    print('Epoch mean cross-entropy (nats) {}'.format(epoch_xentropy))
+                    print 'Epoch mean cross-entropy (nats) {}'.format(epoch_xentropy)
                     epoch_summary = sess.run(epoch_summaries, feed_dict={epoch_mean_xentropy: epoch_xentropy, epoch_mean_time: np.mean(epoch_times), epoch_var_xentropy: np.var(epoch_xentropies), epoch_var_time: np.var(epoch_times), epoch_time_total: np.sum(epoch_times)})
                     summary_writer.add_summary(epoch_summary, batch_num)
 
@@ -350,13 +350,13 @@ def main(_):
                     epoch_times = []
 
                 if batch_num % FLAGS.nbatches_per_ckpt == 0:
-                    print('Saving model weights...')
+                    print 'Saving model weights...'
                     ckpt_fp = os.path.join(FLAGS.experiment_dir, 'onset_net_train')
                     model_saver.save(sess, ckpt_fp, global_step=tf.contrib.framework.get_or_create_global_step())
-                    print('Done saving!')
+                    print 'Done saving!'
 
                 if do_train_eval and batch_num % FLAGS.nbatches_per_eval == 0:
-                    print('Evaluating...')
+                    print 'Evaluating...'
                     eval_start_time = time.time()
 
                     metrics = defaultdict(list)
@@ -393,10 +393,10 @@ def main(_):
                         metrics['xentropy_avg'].append(xentropy_avg)
                         metrics['accuracy'].append(accuracy)
 
-                    metrics = {k: (np.mean(v), np.var(v)) for k, v in list(metrics.items())}
+                    metrics = {k: (np.mean(v), np.var(v)) for k, v in metrics.items()}
                     feed_dict = {}
                     results = []
-                    for metric_name, (mean, var) in list(metrics.items()):
+                    for metric_name, (mean, var) in metrics.items():
                         feed_dict[eval_metrics[metric_name][0]] = mean
                         feed_dict[eval_metrics[metric_name][1]] = var
                     feed_dict[eval_time] = time.time() - eval_start_time
@@ -405,22 +405,22 @@ def main(_):
 
                     xentropy_avg_mean = metrics['xentropy_avg'][0]
                     if xentropy_avg_mean < eval_best_xentropy_avg:
-                        print('Xentropy {} better than previous {}'.format(xentropy_avg_mean, eval_best_xentropy_avg))
+                        print 'Xentropy {} better than previous {}'.format(xentropy_avg_mean, eval_best_xentropy_avg)
                         ckpt_fp = os.path.join(FLAGS.experiment_dir, 'onset_net_early_stop_xentropy_avg')
                         model_early_stop_xentropy_avg.save(sess, ckpt_fp, global_step=tf.contrib.framework.get_or_create_global_step())
                         eval_best_xentropy_avg = xentropy_avg_mean
 
                     accuracy_mean = metrics['accuracy'][0]
                     if accuracy_mean > eval_best_accuracy:
-                        print('Accuracy {} better than previous {}'.format(accuracy_mean, eval_best_accuracy))
+                        print 'Accuracy {} better than previous {}'.format(accuracy_mean, eval_best_accuracy)
                         ckpt_fp = os.path.join(FLAGS.experiment_dir, 'onset_net_early_stop_accuracy')
                         model_early_stop_accuracy.save(sess, ckpt_fp, global_step=tf.contrib.framework.get_or_create_global_step())
                         eval_best_accuracy = accuracy_mean
 
-                    print('Done evaluating')
+                    print 'Done evaluating'
 
         if do_eval:
-            print('Evaluating...')
+            print 'Evaluating...'
 
             metrics = defaultdict(list)
 
@@ -457,18 +457,18 @@ def main(_):
                 metrics['xentropy_avg'].append(xentropy_avg)
                 metrics['accuracy'].append(accuracy)
 
-            metrics = {k: (np.mean(v), np.std(v), np.min(v), np.max(v)) for k, v in list(metrics.items())}
+            metrics = {k: (np.mean(v), np.std(v), np.min(v), np.max(v)) for k, v in metrics.items()}
             copy_pasta = []
             for metric_name in ['xentropy_avg', 'perplexity', 'accuracy']:
                 metric_stats = metrics[metric_name]
                 copy_pasta += list(metric_stats)
-                print('{}: {}'.format(metric_name, metric_stats))
-            print('COPY PASTA:')
-            print(','.join([str(x) for x in copy_pasta]))
+                print '{}: {}'.format(metric_name, metric_stats)
+            print 'COPY PASTA:'
+            print ','.join([str(x) for x in copy_pasta])
 
         # TODO: This currently only works for VERY specific model (delta time LSTM)
         if do_generate:
-            print('Generating...')
+            print 'Generating...'
 
             with open(FLAGS.generate_fp, 'r') as f:
                 step_times = [float(x) for x in f.read().split(',')]
@@ -506,7 +506,7 @@ def main(_):
                 while sym_idx <= 1:
                     sym_idx = weighted_pick(scores)
                     if sym_idx <= 1:
-                        print('rare')
+                        print 'rare'
                 sym_idx = sym_idx - 1 # remove special
                 sym = idx_to_sym[sym_idx]
 
@@ -521,4 +521,4 @@ def main(_):
                 pickle.dump((seq_scores, seq_sym_idxs, seq_syms), f)
 
 if __name__ == '__main__':
-    tf.compat.v1.app.run()
+    tf.app.run()

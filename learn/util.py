@@ -1,4 +1,4 @@
-import cPickle as pickle
+import pickle as pickle
 import os
 import math
 import unicodedata
@@ -27,11 +27,11 @@ def ez_name(x):
 
 def stride_csv_arg_list(arg, stride, cast=int):
     assert stride > 0
-    l = filter(lambda x: bool(x), [x.strip() for x in arg.split(',')])
+    l = [x for x in [x.strip() for x in arg.split(',')] if bool(x)]
     l = [cast(x) for x in l]
     assert len(l) % stride == 0
     result = []
-    for i in xrange(0, len(l), stride):
+    for i in range(0, len(l), stride):
         if stride == 1:
             subl = l[i]
         else:
@@ -41,7 +41,7 @@ def stride_csv_arg_list(arg, stride, cast=int):
 
 def np_pad(x, pad_to, value=0, axis=-1):
     assert x.shape[axis] <= pad_to
-    pad = [(0, 0) for i in xrange(x.ndim)]
+    pad = [(0, 0) for i in range(x.ndim)]
     pad[axis] = (0, pad_to - x.shape[axis])
     return np.pad(x, pad_width=pad, mode='constant', constant_values=value)
 
@@ -88,14 +88,14 @@ def flatten_dataset_to_charts(dataset):
     return [item for sublist in [x[2] for x in dataset] for item in sublist]
 
 def filter_chart_type(charts, chart_type):
-    return filter(lambda x: x.get_type() == chart_type, charts)
+    return [x for x in charts if x.get_type() == chart_type]
 
 def make_onset_feature_context(song_features, frame_idx, radius):
     nframes = song_features.shape[0]
     
     assert nframes > 0
 
-    frame_idxs = xrange(frame_idx - radius, frame_idx + radius + 1)
+    frame_idxs = range(frame_idx - radius, frame_idx + radius + 1)
     context = np.zeros((len(frame_idxs),) + song_features.shape[1:], dtype=song_features.dtype)
     for i, frame_idx in enumerate(frame_idxs):
         if frame_idx >= 0 and frame_idx < nframes:
@@ -120,7 +120,7 @@ def align_onsets_to_sklearn(true_onsets, pred_onsets, scores, tolerance=0):
     pred_to_true = {}
     for true_idx in true_onsets:
         true_to_pred[true_idx] = []
-        for pred_idx in xrange(true_idx - tolerance, true_idx + tolerance + 1):
+        for pred_idx in range(true_idx - tolerance, true_idx + tolerance + 1):
             if pred_idx in pred_onsets:
                 true_to_pred[true_idx].append(pred_idx)
                 if pred_idx not in pred_to_true:
@@ -130,7 +130,7 @@ def align_onsets_to_sklearn(true_onsets, pred_onsets, scores, tolerance=0):
     # Create alignments
     true_to_pred_confidence = {}
     pred_idxs_used = set()
-    for pred_idx, true_idxs in pred_to_true.items():
+    for pred_idx, true_idxs in list(pred_to_true.items()):
         true_idx_use = true_idxs[0]
         if len(true_idxs) > 1:
             for true_idx in true_idxs:
@@ -145,7 +145,7 @@ def align_onsets_to_sklearn(true_onsets, pred_onsets, scores, tolerance=0):
     y_true = np.zeros_like(scores)
     y_true[list(true_onsets)] = 1.0
     y_scores = np.zeros_like(scores)
-    for true_idx, confidence in true_to_pred_confidence.items():
+    for true_idx, confidence in list(true_to_pred_confidence.items()):
         y_scores[true_idx] = confidence
 
     # Add remaining false positives
