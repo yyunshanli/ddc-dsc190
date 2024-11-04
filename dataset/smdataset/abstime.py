@@ -4,6 +4,12 @@ def bpm_to_spb(bpm):
     return 60.0 / bpm
 
 def calc_segment_lengths(bpms):
+    """
+Calculates the duration (in seconds) of each time segment between consecutive BPM change points.
+Converts beat-based segments to time-based durations for accurate mapping of beat positions to real-world time.
+Essential for timing synchronization and further calculations involving absolute time in music analysis.
+"""
+
     assert len(bpms) > 0
     segment_lengths = []
     for i in range(len(bpms) - 1):
@@ -12,6 +18,11 @@ def calc_segment_lengths(bpms):
     return segment_lengths
 
 def calc_abs_for_beat(offset, bpms, stops, segment_lengths, beat):
+    """
+Calculates the absolute time (in seconds) for a specific beat in a musical piece, accounting for BPM changes, stops, and an initial time offset.
+Iterates through the BPM change points to find the relevant segment and computes the cumulative time up to that beat, including adjustments for stops.
+Returns the absolute time in seconds, facilitating precise synchronization of beats and events in music.
+"""
     bpm_idx = 0
     while bpm_idx < len(bpms) and beat + _EPSILON > bpms[bpm_idx][0]:
         bpm_idx += 1
@@ -23,12 +34,17 @@ def calc_abs_for_beat(offset, bpms, stops, segment_lengths, beat):
         # We are at this stop which should not count to its timing
         if abs(diff) < _EPSILON:
             break
-        # We are before this stop
+        # We are before this stop so we don't count it
         elif diff < 0:
             break
-        # We are above this stop
+        # We are after this stop so count it
         else:
             stop_len_cumulative += stop_len
+    """
+    full_segment_total: The total time up to the start of the current BPM segment (before beat).
+    partial_segment_spb: The duration of each beat in the current segment.
+    partial_segment: The time from the start of the current BPM segment to the specified beat.
+    """
 
     full_segment_total = sum(segment_lengths[:bpm_idx])
     partial_segment_spb = bpm_to_spb(bpms[bpm_idx][1])
