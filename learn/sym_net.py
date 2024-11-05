@@ -1,8 +1,6 @@
 import math
-import random
 import tensorflow as tf
 from tensorflow.keras import layers, Model
-import numpy as np
 
 class SymNet(Model):
     def __init__(self,

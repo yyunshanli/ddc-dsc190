@@ -1,7 +1,5 @@
-import essentia
 from essentia.standard import MonoLoader, FrameGenerator, Windowing, Spectrum, MelBands
 import numpy as np
-from tqdm import tqdm
 
 def create_analyzers(fs=44100.0,
                      nhop=512,

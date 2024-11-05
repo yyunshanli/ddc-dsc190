@@ -2,11 +2,9 @@ import os
 import time
 import pickle
 import argparse
-import numpy as np
 import tensorflow as tf
-from collections import defaultdict
 from sym_net import SymNet
-from util import open_dataset_fps, apply_z_norm, calc_mean_std_per_band, flatten_dataset_to_charts, load_id_dict
+from util import open_dataset_fps, apply_z_norm, calc_mean_std_per_band, flatten_dataset_to_charts
 
 # Argument parser for command-line arguments
 def parse_arguments():

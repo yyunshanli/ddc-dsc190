@@ -23,6 +23,8 @@ def parse_arguments():
     parser.add_argument('--out_dir', type=str, required=True, help='Output directory for exported features')
     return parser.parse_args()
 
+BATCH_SIZE = 512
+
 # Load and process data
 def load_data(data_txt_fp):
     with open(data_txt_fp, 'r') as f:

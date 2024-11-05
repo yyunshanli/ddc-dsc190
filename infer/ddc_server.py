@@ -1,19 +1,17 @@
 import os
 import shutil
-import math
 import uuid
 import zipfile
 import tempfile
 import pickle
 import numpy as np
-import tensorflow as tf
 from flask import Flask, request, send_file, send_from_directory
 from essentia.standard import MetadataReader
 from scipy.signal import argrelextrema
-from extract_feats import extract_mel_feats, create_analyzers
-from onset_net import OnsetNet
-from sym_net import SymNet
-from util import make_onset_feature_context
+from learn.extract_feats import extract_mel_feats, create_analyzers
+from learn.onset_net import OnsetNet # step placement
+from learn.sym_net import SymNet # step selection
+from learn.util import make_onset_feature_context
 
 # Flask app initialization
 app = Flask(__name__, static_url_path='', static_folder='frontend')
