@@ -4,7 +4,7 @@ if __name__ == '__main__':
     import copy
     import json
     import os
-    from .util import get_subdirs
+    from util import get_subdirs
 
     parser = argparse.ArgumentParser()
     parser.add_argument('json_in_dir', type=str, help='Input JSON directory')

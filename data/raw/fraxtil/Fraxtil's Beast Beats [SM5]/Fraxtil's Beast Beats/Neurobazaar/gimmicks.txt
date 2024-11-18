@@ -1,0 +1,30 @@
+version: 0.2.0
+
+gimmicks:
+    0: bpm 130.000
+    144.25-144.75: 1/16 1.25x midstutter
+    145-145.5: 1/16 1.25x midstutter
+    146.25-147.75: 1/16 1.25x midstutter
+    150-151: 1/8 1.5x halfbrake
+    152.333-156: 1/12 1.25x midstutter
+    156-157: 1/8 1.5x halfbrake
+    160-161.5: copy 144
+    164-166: 1/8 1.5x halfbrake
+    168.333-171: 1/12 1.25x midstutter
+    172.25-172.75: 1/16 1.25x midstutter
+    180.333-181: 1/12 1.25x midstutter
+    181-182: 1/8 1.5x halfbrake
+    184.333-185: 1/12 1.25x midstutter
+    192-193.5: copy 144
+    194.25-195.75: copy 144
+    200-203: copy 152
+    204-205: copy 172
+    214: bpm 97.5
+    215.5: bpm 86.667
+    217.5: bpm 65
+    218.5-219: 1/16 1.5x halfbrake
+    219.5-220: 1/16 1.5x halfbrake
+    220-221: 1/24 1.25x midstutter
+    222.5-223: 1/16 1.5x halfbrake
+    223.5-225: 1/16 1.5x halfbrake
+    226.5-227: 1/16 1.5x halfbrake

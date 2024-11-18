@@ -1,0 +1,47 @@
+version: 0.2.1
+
+gimmicks:
+    0: bpm 108.000
+    77.25: 1/16 2x halfbrake
+    77.75: 1/16 2x halfbrake
+    81: 1/8 1.5x halfbrake
+    89.25-90: 1/16 1.5x midstutter
+    93.25-93.75: 1/16 2x halfbrake
+    97.25-98: copy 89.25
+    98.5: 1/8 3x quarterbrake
+    99.5-100: copy 98.5
+    100.5-101: copy 98.5
+    101.5-102: 1/16 3x halfbrake
+    102.25-103: copy 89.25
+    103.25-103.5: copy 89.25
+    105-106: 1/12 1.5x midstutter
+    106: 1/6 1.666666666666x halfbrake
+    107.666666666666: 1/12 2x quarterbrake
+    108-110: copy 106
+    110-112: copy 106
+    112-113: copy 106
+    113.25: 1/8 1.5x midstutter
+    113.75: 1/16 1.5x midstutter
+    114-122: copy 98
+    122: 1/12 1.666666666666x halfbrake
+    123.666666666666: 1/12 2x quarterbrake
+    124-126: copy 122
+    126-127: copy 122
+    127.75: 1/16 2x quarterbrake
+    128: 1/8 1.666666666666x halfbrake
+    129.5: 3/16 2x halfbrake
+    130.5-131: 1/16 1.5x midstutter
+    133.5-134: copy 130.5
+    137.5: 1/8 2x quarterbrake
+    141.25-142: 1/16 1.5x midstutter
+    144.5: 1/8 1.5x halfboost
+    145: 1/16 1.5x midstutter
+    149.5-150: copy 130.5
+    153.5-154: copy 137.5
+    157.25-158: copy 141.25
+    202-226: copy 74
+    226-230: copy 130
+    230.25: 1/16 2x halfbrake
+    234-242: copy 138
+    242.5: 1/8 2x halfbrake
+    243-258: copy 147
