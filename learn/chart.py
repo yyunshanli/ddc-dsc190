@@ -50,7 +50,11 @@ class OnsetChart(Chart):
             if kwargs.get(key):
                 value = to_id(kwargs[key])
                 onehot = np.zeros(max(kwargs[key].values()) + 1, dtype=dtype)
-                onehot[:value + 1] = 1.0 if kwargs.get('diff_dipstick') else onehot[value] = 1.0
+                
+                if kwargs.get('diff_dipstick'):
+                    onehot[:value + 1] = 1.0
+                else:
+                    onehot[value] = 1.0
                 feats_other.append(onehot)
 
         if kwargs.get('beat_phase') or kwargs.get('beat_phase_cos'):

@@ -1,0 +1,2 @@
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_FutureMUSiC.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_Lightspeed_Remix_.json

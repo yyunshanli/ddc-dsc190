@@ -4,7 +4,7 @@ if __name__ == '__main__':
     from collections import Counter, defaultdict
     import json
     import os
-    from .util import get_subdirs
+    from util import get_subdirs
 
     parser = argparse.ArgumentParser()
     parser.add_argument('dataset_fps', type=str, nargs='+', help='List of dataset filepaths to analyze')

@@ -1,0 +1,46 @@
+version: 0.2.0
+
+gimmicks:
+    0: bpm 160.000
+    28.5: stop 1/4
+    31-33: 1/4 2x halfbrake
+    33.75: 1/16 1.5x stutter
+    35-37: 1/4 2x halfbrake
+    37-37.75: 3/16 1.333x halfboost
+    37.75: 1/16 1.5x stutter
+    39-43: 1/4 2x halfbrake
+    43.75: 1/16 1.5x stutter
+    49.75: 1/16 1.5x stutter
+    53.75: 1/16 1.5x stutter
+    62-63: 1/16 1.5x midstutter
+    75: 1/8 1.5x halfboost
+    76.25: 1/16 1.5x stutter
+    93-95: 1/16 1.5x midstutter
+    126: 1/4 2x halfbrake
+    130.5: 1/8 1.5x quarterbrake
+    133.25-134: 1/16 3x halfbrake
+    136: 1/8 1.5x halfboost
+    139: 1/8 2x halfbrake
+    139.5: 1/8 1.5x halfboost
+    141.5-142: 1/24 2x midstutter
+    145-146: 1/16 3x halfbrake
+    146.5: 1/8 1.5x quarterbrake
+    161.5: 1/16 2x halfboost
+    162: 1/16 2x halfboost
+    165.5-166: 1/16 3x halfbrake
+    168: 1/8 1.5x halfboost
+    171: 1/8 2x halfbrake
+    172: 1/4 1.25x halfboost
+    203: 1/8 1.5x halfboost
+    203.75: 1/8 1.5x halfboost
+    204.5: 1/8 1.5x halfboost
+    206: 1/4 2x halfbrake
+    209.75: 1/16 1.5x stutter
+    213.75: 1/16 1.5x stutter
+    223-231: copy 207
+    238.5-239: 1/16 1.5x midstutter
+    239-263: copy 207
+    274.5: 1/8 1.5x quarterbrake
+    277.25: 1/16 3x halfbrake
+    281-282: 1/16 3x halfbrake
+    290.5: 1/8 1.5x quarterbrake

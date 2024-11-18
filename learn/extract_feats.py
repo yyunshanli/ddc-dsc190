@@ -81,6 +81,16 @@ if __name__ == '__main__':
             json_fps = f.read().splitlines()
 
         for json_fp in json_fps:
+
+            if not json_fp.strip():
+                print(f"Skipping empty or invalid line in {dataset_fp}")
+                continue
+
+            if not os.path.exists(json_fp):
+                print(f"Skipping non-existent file: {json_fp}")
+                continue            
+
+
             song_name = os.path.splitext(os.path.split(json_fp)[1])[0]
             print('Extracting feats from {}'.format(song_name))
 

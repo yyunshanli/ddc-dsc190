@@ -1,0 +1,16 @@
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_NeedYourLove_SF_DubstepMix_.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_BitchClap.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_CallMeMaybe_Remix_.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_HumanError.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_Goin_Under.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_Goodbye_2012Mix_.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_BadKetchup.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_TheSeconds.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_DeadHollywood.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_NoBeginning.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_DealWithIt.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_Stamina.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_Named_TheMoon_.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_PainGame.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_Girls.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sArrowArrangements/Fraxtil_sArrowArrangements_InnerUniverse_ExtendedMix_.json

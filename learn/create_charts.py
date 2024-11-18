@@ -71,7 +71,18 @@ if __name__ == '__main__':
         with open(dataset_fp, 'r') as f:
             json_fps = f.read().splitlines()
 
+
             for json_fp in json_fps:
+
+                if not json_fp.strip():
+                    print(f"Skipping empty or invalid line in {dataset_fp}")
+                    continue
+
+                if not os.path.exists(json_fp):
+                    print(f"Skipping non-existent file: {json_fp}")
+                    continue
+
+
                 json_name = name_from_fp(json_fp)
 
                 with open(json_fp, 'r') as json_f:

@@ -1,0 +1,4 @@
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/chart_onset/fraxtil/mel80hop441/Fraxtil_sArrowArrangements_StarGear.pkl
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/chart_onset/fraxtil/mel80hop441/Fraxtil_sArrowArrangements_TurnUp_TheMusic_.pkl
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/chart_onset/fraxtil/mel80hop441/Fraxtil_sBeastBeats_Souten_sta_sKey_Kaimix_.pkl
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/chart_onset/fraxtil/mel80hop441/Fraxtil_sBeastBeats_Trap.pkl

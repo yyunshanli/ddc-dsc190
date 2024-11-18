@@ -1,0 +1,16 @@
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_MonkeyBusiness.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_Blue.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_Caelumize.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_JumpYaBody.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_GetLucky.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_HeartBeats.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_Axion.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_TheEdge.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_Drift.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_Neurobazaar.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_FangBanger.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_Plasticity.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_Mess.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_Peacock.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_G_SYMPHONiCORE.json
+/Users/billwang/Documents/UCSD_UNGRAD/Fall2024/DSC190/ddc-dsc190/data/json_filt/fraxtil/Fraxtil_sBeastBeats/Fraxtil_sBeastBeats_KokeshiNekoMedley.json

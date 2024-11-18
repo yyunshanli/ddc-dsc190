@@ -1,0 +1,75 @@
+version: 0.2.1
+
+definitions:
+    AwA:
+        bpms:
+            0:      bpm * 2
+            0.25:   bpm * 2 / 3
+            0.75:   bpm * 2
+    BEWM:
+        bpms:
+            0:      bpm * 2
+            0.75:   bpm
+        stops:
+            0.75:   60 / bpm * 3 / 8 * len
+        
+
+gimmicks:
+    0:          bpm 139.931
+    62:         1/2 1.25x halfbrake
+    64:         1/4 2x quarterbrake
+    65:         1/4 1x AwA
+    66:         1/4 1x BEWM
+    67-69:      copy 65
+    69:         1/4 1x AwA
+    72-80:      copy 64
+    80-88:      copy 64
+    92:         3/8 2x halfbrake
+    
+    96-101:     copy 64
+    104-108:    copy 96
+    108:        3/16 1x BEWM
+    110.5:      5/24 2x midstutter
+    111.5:      1/8 2x midstutter
+    112-117:    copy 96
+    118.833:    1/6 2x halfbrake
+    126:        bpm 69.965
+    128:        bpm 139.931
+    
+    145.5-146:  1/8 2x halfbrake
+    
+    190-195:    copy 96
+    199-201:    1/4 1.5x halfboost
+    201-202:    1/24 2x stutter
+    202-203:    copy 199
+    203.5:      1/8 2x halfbrake
+    204:        1/8 2x midstutter
+    204.833:    1/8 2x midstutter
+    205.5:      1/8 2x midstutter
+    206-212:    copy 64
+    214:        1/4 1.5x halfboost
+    215-216:    1/8 1.5x halfbrake
+    217:        1/4 1.5x halfboost
+    218-220:    copy 62
+    222-248:    copy 190
+    
+    254-259:    copy 190
+    263-267:    copy 105
+    268.5:      1/8 2x halfboost
+    269.5:      1/8 2x halfboost
+    270:        1/4 1.5x halfboost
+    271-275:    copy 191
+    276:        1/8 2x midstutter
+    276.833:    1/6 2x midstutter
+    277.5:      3/8 1.5x halfboost
+    280.833:    7/24 1.5x halfbrake
+    286-294:    copy 254
+    294-295:    copy 254
+    295-300:    copy 263
+    300.5:      1/8 2x midstutter
+    301.333:    1/8 2x midstutter
+    302:        1/12 2x midstutter
+    303-308:    copy 271
+    308.833:    1/8 1.5x halfbrake
+    311-312:    1/8 1.5x halfbrake
+    316:        bpm 69.965
