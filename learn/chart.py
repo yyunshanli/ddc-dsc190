@@ -1,8 +1,8 @@
 import numpy as np
 import random
 from collections import Counter
-from beatcalc import BeatCalc
-from util import make_onset_feature_context, np_pad
+from .beatcalc import BeatCalc
+from .util import make_onset_feature_context, np_pad
 
 
 class Chart:

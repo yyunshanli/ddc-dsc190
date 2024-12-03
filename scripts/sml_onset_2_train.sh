@@ -1,8 +1,8 @@
 source sml_0_push.sh
 
-# EXP_DIR=/tmp/train
-# rm -rf ${EXP_DIR}
-# mkdir -p ${EXP_DIR}
+EXP_DIR=/tmp/train
+rm -rf ${EXP_DIR}
+mkdir -p ${EXP_DIR}
 
 # python onset_train.py \
 #         --train_txt_fp=${SM_DIR}/data/chart_onset/${1}/mel80hop441/${1}_train.txt \
@@ -51,6 +51,7 @@ python onset_train.py \
     --train_txt_fp="${SM_DIR}/data/chart_onset/${1}/mel80hop441/${1}_train.txt" \
     --valid_txt_fp="${SM_DIR}/data/chart_onset/${1}/mel80hop441/${1}_valid.txt" \
     --z_score \
+    --test_txt_fp="${SM_DIR}/data/chart_onset/${1}/mel80hop441/${1}_test.txt"
     --audio_context_radius=7 \
     --audio_nbands=80 \
     --audio_nchannels=3 \
@@ -63,4 +64,4 @@ python onset_train.py \
     --batch_size=256 \
     --lr=0.001 \
     --nepochs=128 \
-    --experiment_dir=${EXP_DIR}
+    --experiment_dir="${EXP_DIR}"

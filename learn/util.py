@@ -3,6 +3,8 @@ import pickle as pickle
 import numpy as np
 from scipy.signal import argrelextrema
 
+
+
 def load_id_dict(id_dict_fp):
     with open(id_dict_fp, 'r') as f:
         id_dict = {k:int(i) for k,i in [x.split(',') for x in f.read().splitlines()]}
@@ -44,10 +46,14 @@ def np_pad(x, pad_to, value=0, axis=-1):
 
 def open_dataset_fps(*args):
     datasets = []
+    
     for data_fp in args:
+        print(data_fp)
+
         if not data_fp:
             datasets.append([])
             continue
+
 
         with open(data_fp, 'r') as f:
             song_fps = f.read().split()

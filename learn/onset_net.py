@@ -60,28 +60,49 @@ class OnsetNet(Model):
         # Final output layer
         self.logit_layer = layers.Dense(1, activation=None)
 
+    # def call(self, inputs, training=False):
+    #     audio_features = inputs['audio']
+    #     feats_audio, feats_other = inputs
+    #     x = feats_audio
+
+    #     # CNN forward pass
+    #     for cnn_layer in self.cnn_layers:
+    #         x = cnn_layer(x)
+
+    #     # Flatten and concatenate
+    #     x = layers.Flatten()(x)
+    #     x = tf.concat([x, feats_other], axis=1)
+
+    #     # RNN forward pass
+    #     if self.do_rnn:
+    #         x = layers.RNN(self.rnn_layers, return_sequences=True)(x)
+
+    #     # DNN forward pass
+    #     for dnn_layer in self.dnn_layers:
+    #         x = dnn_layer(x)
+    #         if training:
+    #             x = layers.Dropout(1 - self.rnn_keep_prob)(x)
+
+    #     # Output layer
+    #     logits = self.logit_layer(x)
+    #     return tf.nn.sigmoid(logits)
     def call(self, inputs, training=False):
         feats_audio, feats_other = inputs
         x = feats_audio
-
-        # CNN forward pass
+        
         for cnn_layer in self.cnn_layers:
             x = cnn_layer(x)
-
-        # Flatten and concatenate
+        
         x = layers.Flatten()(x)
         x = tf.concat([x, feats_other], axis=1)
-
-        # RNN forward pass
+        
         if self.do_rnn:
             x = layers.RNN(self.rnn_layers, return_sequences=True)(x)
-
-        # DNN forward pass
+        
         for dnn_layer in self.dnn_layers:
             x = dnn_layer(x)
             if training:
                 x = layers.Dropout(1 - self.rnn_keep_prob)(x)
-
-        # Output layer
+        
         logits = self.logit_layer(x)
         return tf.nn.sigmoid(logits)
